@@ -1,0 +1,17 @@
+<div class="toggle-movie">
+  <button class="toggle-movie__button" [ngClass]="[ontoggleBtnAll]" (click)="toggleCards('all')">All</button>
+  <button class="toggle-movie__button" [ngClass]="[ontoggleBtnMovies]" (click)="toggleCards('movies')">Movies</button>
+  <button class="toggle-movie__button" [ngClass]="[ontoggleBtnShows]" (click)="toggleCards('shows')">TV Shows</button>
+</div>
+<section class="movies-grid">
+    <app-card *ngFor="let movie of gridData | async" [movie]="movie"></app-card>
+</section>
+
+
+
+
+<!--<div class="movies-grid">
+  <p>All({{gridDataCount}})</p>
+</div>-->
+
+

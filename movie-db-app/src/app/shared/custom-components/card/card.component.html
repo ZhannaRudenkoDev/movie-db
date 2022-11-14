@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-rating">
+      <img src="assets/card/star.svg" alt="Name of movie">
+      <p>{{movie.vote_average}}</p>
+    </div>
+    <a href="#" class="card-image">
+      <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
+    </a>
+    <div class="card-info">
+      <a href="#">{{movie.original_title ? movie.original_title : movie.original_name}}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+.movies-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  grid-row-gap: 24px;
+  row-gap: 24px;
+  grid-column-gap: 24px;
+  column-gap: 24px;
+  align-items: start;
+  padding: 0 120px;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .movies-grid {
+    padding-left: 80px;
+    padding-right: 80px;
+    grid-template-columns: repeat(3,minmax(0,1fr))
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movies-grid {
+    padding-left: 40px;
+    padding-right: 40px;
+    grid-template-columns: repeat(2,minmax(0,1fr))
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .movies-grid {
+    padding-left: 16px;
+    padding-right: 16px;
+    grid-template-columns: repeat(1,minmax(0,1fr))
+  }
+}
+
+.toggle-movie {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px;
+  width: 368px;
+  height: 56px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(40px);
+  border-radius: 12px;
+  &__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 32px;
+    gap: 10px;
+    height: 40px;
+    border-radius: 8px;
+    border-color: transparent;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+  }
+}
+
+.btn-change {
+  background: #7B6EF6;
+  color: #EBE9FE;
+}
+
+.btn-static {
+  background-color: transparent;
+  color: #8E95A9;
+}
+
