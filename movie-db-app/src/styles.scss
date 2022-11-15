@@ -4,3 +4,10 @@
   box-sizing: border-box;
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  background: rgba(18, 24, 41, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+html, body { height: 100%; }

@@ -27,16 +27,33 @@ export class ApiService {
 
   getMovies(): Observable<MovieModel[]> {
     return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
-      pluck('results')
+      pluck('results'),
+      map(data => {
+        return data.map(item => {
+          return { ...item, isMovie: true}
+        })
+      })
     )
   }
 
 
   getTVShows(): Observable<MovieModel[]> {
     return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
-      pluck('results')
+      pluck('results'),
+      map(data => {
+        return data.map(item => {
+          return { ...item, isMovie: false}
+        })
+      })
     )
   }
 
+  getMovieDetails(id: number): Observable<MovieModel> {
+    return this.http.get<MovieModel>(`${this.baseUrl}/3/movie/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe()
+  }
+
+  getTvDetails(id: number): Observable<MovieModel> {
+    return this.http.get<MovieModel>(`${this.baseUrl}/3/tv/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe()
+  }
 
 }

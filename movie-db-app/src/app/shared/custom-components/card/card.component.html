@@ -4,11 +4,11 @@
       <img src="assets/card/star.svg" alt="Name of movie">
       <p>{{movie.vote_average}}</p>
     </div>
-    <a href="#" class="card-image">
+    <a class="card-image" (click)="getDetails(movie.id, movie.isMovie)">
       <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
     </a>
     <div class="card-info">
-      <a href="#">{{movie.original_title ? movie.original_title : movie.original_name}}</a>
+      <a (click)="getDetails(movie.id, movie.isMovie)">{{movie.original_title ? movie.original_title : movie.original_name}}</a>
     </div>
   </div>
 </div>

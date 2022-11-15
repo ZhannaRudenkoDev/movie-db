@@ -1,17 +1,18 @@
-<div class="toggle-movie">
-  <button class="toggle-movie__button" [ngClass]="[ontoggleBtnAll]" (click)="toggleCards('all')">All</button>
-  <button class="toggle-movie__button" [ngClass]="[ontoggleBtnMovies]" (click)="toggleCards('movies')">Movies</button>
-  <button class="toggle-movie__button" [ngClass]="[ontoggleBtnShows]" (click)="toggleCards('shows')">TV Shows</button>
-</div>
-<section class="movies-grid">
-    <app-card *ngFor="let movie of gridData | async" [movie]="movie"></app-card>
+<section class="head-banner">
+  <h1>MaileHereko</h1>
+  <p>List of movies and TV Shows, I, Pramod Poudel have watched till date. Explore what I have watched and also feel free to make a suggestion. 😉</p>
+  <app-search-input (searchValue)="getSearchValue($event)"></app-search-input>
+  <div class="toggle-movie">
+    <button class="toggle-movie__button" [ngClass]="[ontoggleBtnAll]" (click)="toggleCards('all')">All</button>
+    <button class="toggle-movie__button" [ngClass]="[ontoggleBtnMovies]" (click)="toggleCards('movies')">Movies</button>
+    <button class="toggle-movie__button" [ngClass]="[ontoggleBtnShows]" (click)="toggleCards('shows')">TV Shows</button>
+  </div>
+  <div class="movies-grid-count">
+    {{titleCount}} <span>({{gridDataCount}})</span>
+  </div>
 </section>
-
-
-
-
-<!--<div class="movies-grid">
-  <p>All({{gridDataCount}})</p>
-</div>-->
+<section class="movies-grid">
+    <app-card *ngFor="let movie of gridData | async | search: searchValue" [movie]="movie"></app-card>
+</section>
 
 
