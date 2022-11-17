@@ -5,6 +5,7 @@ import { MoviesComponent } from "./movies/movies.component";
 import { TvComponent } from "./tv/tv.component";
 import { MoviesDetailsComponent } from "../../shared/custom-components/movies-details/movies-details.component";
 import { TvDetailsComponent } from "../../shared/custom-components/tv-details/tv-details.component";
+import { SuggestComponent } from "./suggest/suggest.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'movies/:id', component: MoviesDetailsComponent },
   { path: 'tv', component: TvComponent },
   { path: 'tv/:id', component: TvDetailsComponent },
+  { path: 'suggest', component: SuggestComponent },
 ];
 
 @NgModule({

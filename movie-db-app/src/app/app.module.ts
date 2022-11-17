@@ -8,6 +8,14 @@ import { NavbarComponent } from './shared/custom-components/navbar/navbar.compon
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MoviesDetailsComponent } from './shared/custom-components/movies-details/movies-details.component';
 import { TvDetailsComponent } from './shared/custom-components/tv-details/tv-details.component';
+import { ManualDialogComponent } from './shared/custom-components/manual-dialog/manual-dialog.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { FormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { ContentModule } from "./pages/content/content.module";
+import { ApproveDialogComponent } from './shared/custom-components/approve-dialog/approve-dialog.component';
 
 
 @NgModule({
@@ -17,11 +25,19 @@ import { TvDetailsComponent } from './shared/custom-components/tv-details/tv-det
     NavbarComponent,
     MoviesDetailsComponent,
     TvDetailsComponent,
+    ManualDialogComponent,
+    ApproveDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    MatInputModule,
+    ContentModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

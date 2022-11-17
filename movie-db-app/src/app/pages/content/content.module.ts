@@ -8,35 +8,45 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { SearchInputComponent } from "../../shared/custom-components/search-input/search-input.component";
 import { MatInputModule }  from '@angular/material/input';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { SearchPipe } from "../../shared/search-pipes/search.pipe";
 import { MoviesComponent } from './movies/movies.component';
 import { TvComponent } from './tv/tv.component';
+import { SuggestComponent } from './suggest/suggest.component';
+import { ButtonComponent } from "../../shared/custom-components/button/button.component";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    CardComponent,
+    declarations: [
+        HomeComponent,
+        CardComponent,
+        SearchInputComponent,
+        SearchPipe,
+        MoviesComponent,
+        TvComponent,
+        SuggestComponent,
+        ButtonComponent
+    ],
+    imports: [
+        ContentRoutingModule,
+        CommonModule,
+        HttpClientModule,
+        MatInputModule,
+        FormsModule,
+        MatSnackBarModule
+    ],
+    providers: [
+        ApiService,
+        /* {
+           provide: HTTP_INTERCEPTORS,
+           useClass: ApiKeyInterceptor,
+           multi: true,
+         },*/
+    ],
+  exports: [
     SearchInputComponent,
-    SearchPipe,
-    MoviesComponent,
-    TvComponent
+    ButtonComponent
   ],
-  imports: [
-    ContentRoutingModule,
-    CommonModule,
-    HttpClientModule,
-    MatInputModule,
-    FormsModule,
-  ],
-  providers: [
-    ApiService,
-   /* {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiKeyInterceptor,
-      multi: true,
-    },*/
-  ],
-  bootstrap: []
+    bootstrap: []
 })
 export class ContentModule { }

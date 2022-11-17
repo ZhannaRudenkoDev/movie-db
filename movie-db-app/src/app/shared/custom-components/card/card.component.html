@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-content">
     <div class="card-rating">
-      <img src="assets/card/star.svg" alt="Name of movie">
+      <img src="assets/card/star.svg" [alt]="movie.original_title ? movie.original_title : movie.original_name">
       <p>{{movie.vote_average}}</p>
     </div>
     <a class="card-image" (click)="getDetails(movie.id, movie.isMovie)">
@@ -9,6 +9,10 @@
     </a>
     <div class="card-info">
       <a (click)="getDetails(movie.id, movie.isMovie)">{{movie.original_title ? movie.original_title : movie.original_name}}</a>
+    </div>
+    <div class="suggest-wrapper" *ngIf="suggestFlag">
+      <img src="assets/card/like.svg" alt="like">
+      <a>Suggest this</a>
     </div>
   </div>
 </div>

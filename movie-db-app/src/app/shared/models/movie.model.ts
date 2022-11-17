@@ -23,7 +23,8 @@ export interface MovieModel {
   number_of_episodes: number,
   number_of_seasons: string,
   episode_run_time: number,
-  status: string
+  status: string,
+  media_type: string
 }
 
 export interface Genres {

@@ -49,11 +49,25 @@ export class ApiService {
   }
 
   getMovieDetails(id: number): Observable<MovieModel> {
-    return this.http.get<MovieModel>(`${this.baseUrl}/3/movie/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe()
+    return this.http.get<MovieModel>(`${this.baseUrl}/3/movie/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`);
   }
 
   getTvDetails(id: number): Observable<MovieModel> {
-    return this.http.get<MovieModel>(`${this.baseUrl}/3/tv/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe()
+    return this.http.get<MovieModel>(`${this.baseUrl}/3/tv/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`);
+  }
+
+  getSearchValues(value: string): Observable<MovieModel[]> {
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/search/multi?api_key=ff767a08fc1285474f8f591370d12441&language=en-US&query=${value}`).pipe(
+      pluck('results'),
+      map(data => {
+        return data.filter(item => item.media_type === 'movie' || item.media_type === 'tv')
+      }),
+      map(data => {
+        return data.map(item => {
+          return { ...item, isMovie: item.media_type === 'movie'}
+        })
+      })
+    )
   }
 
 }
