@@ -11,8 +11,10 @@
       <a (click)="getDetails(movie.id, movie.isMovie)">{{movie.original_title ? movie.original_title : movie.original_name}}</a>
     </div>
     <div class="suggest-wrapper" *ngIf="suggestFlag">
-      <img src="assets/card/like.svg" alt="like">
-      <a>Suggest this</a>
+      <img [src]="suggestedFlag ? 'assets/card/tick.png' :'assets/card/like.svg'" alt="icon">
+      <a (click)="suggested()"
+         [ngStyle]="{'color': suggestedFlag ? '#37d8a8' : '#7B6EF6', 'cursor': suggestedFlag ? 'auto' : 'pointer'}"
+      >{{suggestedFlag ? 'Suggested' : 'Suggest this'}}</a>
     </div>
   </div>
 </div>

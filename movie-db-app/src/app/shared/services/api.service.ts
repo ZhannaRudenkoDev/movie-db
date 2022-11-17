@@ -57,7 +57,7 @@ export class ApiService {
   }
 
   getSearchValues(value: string): Observable<MovieModel[]> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/search/multi?api_key=ff767a08fc1285474f8f591370d12441&language=en-US&query=${value}`).pipe(
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/search/multi?api_key=ff767a08fc1285474f8f591370d12441&language=en-US&adult=false&query=${value}`).pipe(
       pluck('results'),
       map(data => {
         return data.filter(item => item.media_type === 'movie' || item.media_type === 'tv')

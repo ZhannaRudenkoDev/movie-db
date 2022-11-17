@@ -6,7 +6,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body {
-  background: rgba(18, 24, 41);
-  backdrop-filter: blur(20px);
+  background-size: 100%;
+  background: #121829 url(assets/Background.png) repeat-y 50% -160px;
 }
 
+:root {
+  color-scheme: dark;
+}
