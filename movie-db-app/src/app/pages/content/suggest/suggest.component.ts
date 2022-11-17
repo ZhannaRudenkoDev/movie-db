@@ -6,6 +6,7 @@ import { ManualDialogComponent } from "../../../shared/custom-components/manual-
 import { ManualMovieModel } from "../../../shared/models/manual-movie.model";
 import { ApproveDialogComponent } from "../../../shared/custom-components/approve-dialog/approve-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import {JsonServerService} from "../../../shared/services/json-server.service";
 
 @Component({
   selector: 'app-suggest',
@@ -19,7 +20,10 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
 
   suggestManual!: ManualMovieModel;
 
-  constructor(public override apiService: ApiService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(public override apiService: ApiService,
+              public dialog: MatDialog,
+              private snackBar: MatSnackBar,
+              private jsonServer: JsonServerService,) {
     super(apiService)
   }
 
@@ -31,9 +35,16 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.suggestManual = result;
       if(this.suggestManual.title && this.suggestManual.url) {
-        this.dialog.open(ApproveDialogComponent, {
-          maxWidth: '560px',
-        });
+        this.jsonServer.addManual(this.suggestManual).subscribe(
+          () => {
+            this.dialog.open(ApproveDialogComponent, {
+              maxWidth: '560px',
+            });
+          },
+          () => {
+            this.openSnackBar('Something went wrong', 'Ok')
+          },
+        );
       } else {
         this.openSnackBar('The form is invalid', 'Ok')
       }

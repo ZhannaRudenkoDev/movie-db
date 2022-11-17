@@ -15,6 +15,7 @@ import { TvComponent } from './tv/tv.component';
 import { SuggestComponent } from './suggest/suggest.component';
 import { ButtonComponent } from "../../shared/custom-components/button/button.component";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { JsonServerService } from "../../shared/services/json-server.service";
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ],
     providers: [
         ApiService,
+        JsonServerService
         /* {
            provide: HTTP_INTERCEPTORS,
            useClass: ApiKeyInterceptor,

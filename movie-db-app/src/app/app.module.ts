@@ -16,6 +16,7 @@ import { FormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { ContentModule } from "./pages/content/content.module";
 import { ApproveDialogComponent } from './shared/custom-components/approve-dialog/approve-dialog.component';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ApproveDialogComponent } from './shared/custom-components/approve-dialo
     TvDetailsComponent,
     ManualDialogComponent,
     ApproveDialogComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
