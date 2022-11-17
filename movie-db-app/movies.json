@@ -41,6 +41,28 @@
       "vote_average": 7.3,
       "vote_count": 20581,
       "isMovie": true
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/w2PMyoyLU22YvrGK3smVM9fW1jj.jpg",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 299537,
+      "media_type": "movie",
+      "original_language": "en",
+      "original_title": "Captain Marvel",
+      "overview": "The story follows Carol Danvers as she becomes one of the universe’s most powerful heroes when Earth is caught in the middle of a galactic war between two alien races. Set in the 1990s, Captain Marvel is an all-new adventure from a previously unseen period in the history of the Marvel Cinematic Universe.",
+      "popularity": 80.887,
+      "poster_path": "/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg",
+      "release_date": "2019-03-06",
+      "title": "Captain Marvel",
+      "video": false,
+      "vote_average": 6.9,
+      "vote_count": 13643,
+      "isMovie": true
     }
   ],
   "manual": [
@@ -48,6 +70,18 @@
       "title": "Friends",
       "url": "httpp//",
       "id": 1
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@email.com",
+      "userPassword": "admin",
+      "role": "admin"
+    },
+    {
+      "email": "user@email.com",
+      "userPassword": "user",
+      "role": "user"
     }
   ]
 }

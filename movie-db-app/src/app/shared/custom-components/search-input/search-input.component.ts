@@ -13,6 +13,8 @@ export class SearchInputComponent implements OnInit {
 
   @Input() image!: string;
 
+  @Input() type!: string;
+
 
   valueChange(newValue: any) {
     this.searchValue.emit(newValue.target.value)

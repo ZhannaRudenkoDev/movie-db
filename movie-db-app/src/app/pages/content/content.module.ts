@@ -34,7 +34,7 @@ import { JsonServerService } from "../../shared/services/json-server.service";
         HttpClientModule,
         MatInputModule,
         FormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
     ],
     providers: [
         ApiService,
