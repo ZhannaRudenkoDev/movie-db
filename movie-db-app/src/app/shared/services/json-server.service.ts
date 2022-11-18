@@ -21,8 +21,8 @@ export class JsonServerService {
     return this.http.post<ManualMovieModel>('http://localhost:3000/manual', movie);
   }
 
-  addToList(movie: ManualMovieModel): Observable<ManualMovieModel> {
-    return this.http.post<ManualMovieModel>('http://localhost:3000/manual', movie);
+  addToList(movie: MovieModel): Observable<MovieModel> {
+    return this.http.post<MovieModel>('http://localhost:3000/list', movie);
   }
 
   getSuggestCount(): Observable<number> {
@@ -31,6 +31,10 @@ export class JsonServerService {
         return data.length;
     })
     );
+  }
+
+  getSuggestions(): Observable<MovieModel[]> {
+    return this.http.get<MovieModel[]>('http://localhost:3000/movies');
   }
 
   getManual(): Observable<number> {

@@ -20,6 +20,9 @@ export class CardComponent implements OnInit {
   suggestFlag: boolean = false;
   suggestedFlag: boolean = false;
 
+  addFlag: boolean = false;
+  addedFlag: boolean = false;
+
   getDetails(id: number, isMovie: boolean) {
     if(isMovie) {
       this.router.navigate(['/movies', id]);
@@ -44,6 +47,18 @@ export class CardComponent implements OnInit {
     );
   }
 
+  added() {
+    this.jsonServer.addToList(this.movie).subscribe(
+      () => {
+        this.openSnackBar('The movie is added to your list!', 'Ok');
+        this.addedFlag = true;
+      },
+      () => {
+        this.openSnackBar('Something went wrong', 'Ok')
+      },
+    );
+  }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action);
   }
@@ -57,8 +72,8 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe(url => {
       if(url[0].path) {
-        console.log(url[0].path)
         this.suggestFlag = url[0].path === 'suggest';
+        this.addFlag = url[0].path === 'add-item'
       }
     })
   }

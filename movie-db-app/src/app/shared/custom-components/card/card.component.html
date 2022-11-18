@@ -16,5 +16,11 @@
          [ngStyle]="{'color': suggestedFlag ? '#37d8a8' : '#7B6EF6', 'cursor': suggestedFlag ? 'auto' : 'pointer'}"
       >{{suggestedFlag ? 'Suggested' : 'Suggest this'}}</a>
     </div>
+    <div class="suggest-wrapper" *ngIf="addFlag">
+      <img [src]="addedFlag ? 'assets/card/tick.png' :'assets/card/add.svg'" alt="icon">
+      <a (click)="added()"
+         [ngStyle]="{'color': addedFlag ? '#37d8a8' : '#7B6EF6', 'cursor': addedFlag ? 'auto' : 'pointer'}"
+      >{{addedFlag ? 'Added' : 'Add to my list'}}</a>
+    </div>
   </div>
 </div>

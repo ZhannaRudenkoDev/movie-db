@@ -84,5 +84,49 @@
       "role": "user"
     }
   ],
-  "list": []
+  "list": [
+    {
+      "backdrop_path": "/6ZqXMR9aLLdGjbxkIMo77EhZexy.jpg",
+      "first_air_date": "2013-05-26",
+      "genre_ids": [
+        10759,
+        16,
+        10765
+      ],
+      "id": 59427,
+      "media_type": "tv",
+      "name": "Marvel's Avengers",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Marvel's Avengers",
+      "overview": "The further adventures of the Marvel Universe's mightiest general membership superhero team. With an all-star roster consisting of Iron Man, Captain America, Thor, Hulk, Hawkeye, Falcon and, occasionally--when she feels like it and only when she feels like it--Black Widow, the Avengers are a team in the truest sense. The Avengers save the world from the biggest threats imaginable--threats no single super hero could withstand.",
+      "popularity": 69.127,
+      "poster_path": "/vchDkX1DtqTy3bIDJ7YqmSbX965.jpg",
+      "vote_average": 7.6,
+      "vote_count": 572,
+      "isMovie": false
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6zXs4OyZM6U4reYvddsJWeByxMX.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 448366,
+      "media_type": "movie",
+      "original_language": "en",
+      "original_title": "Building the Dream: Assembling the Avengers",
+      "overview": "Witness Marvel's epic journey, from its comic book origins to its blockbuster film franchises, through seven exclusive featurettes. Get the inside story, with exclusive behind-the-scenes footage and cast interviews, and discover the history behind its legendary characters and films -- Iron Man, The Incredible Hulk, Iron Man 2, Thor, Captain America: The First Avenger, and Marvel's The Avengers! With over 90 minutes of original footage, this is your all-access pass to Marvel and Phase One of the Marvel Cinematic Universe!",
+      "popularity": 10.024,
+      "poster_path": "/coS6rIaucxDzq20kiJozTgQ0Nmk.jpg",
+      "release_date": "2012-09-25",
+      "title": "Building the Dream: Assembling the Avengers",
+      "video": true,
+      "vote_average": 8.4,
+      "vote_count": 24,
+      "isMovie": true
+    }
+  ]
 }

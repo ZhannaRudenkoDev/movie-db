@@ -53,7 +53,8 @@ import { NavbarComponent } from "../../shared/custom-components/navbar/navbar.co
     SearchInputComponent,
     ButtonComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardComponent
   ],
     bootstrap: []
 })

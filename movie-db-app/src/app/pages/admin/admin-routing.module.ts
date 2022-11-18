@@ -7,6 +7,7 @@ import { AddItemComponent } from "./add-item/add-item.component";
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'add-item', component: AddItemComponent },
+  { path: 'suggest', component: AddItemComponent },
 ];
 
 @NgModule({

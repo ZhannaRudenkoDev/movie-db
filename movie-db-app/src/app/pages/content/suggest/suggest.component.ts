@@ -6,7 +6,7 @@ import { ManualDialogComponent } from "../../../shared/custom-components/manual-
 import { ManualMovieModel } from "../../../shared/models/manual-movie.model";
 import { ApproveDialogComponent } from "../../../shared/custom-components/approve-dialog/approve-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import {JsonServerService} from "../../../shared/services/json-server.service";
+import { JsonServerService } from "../../../shared/services/json-server.service";
 
 @Component({
   selector: 'app-suggest',
