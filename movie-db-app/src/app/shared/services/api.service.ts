@@ -36,6 +36,24 @@ export class ApiService {
     )
   }
 
+  getMoviesCount(): Observable<number> {
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
+      pluck('results'),
+      map(data => {
+        return data.length;
+      })
+    )
+  }
+
+  getTvCount(): Observable<number> {
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
+      pluck('results'),
+      map(data => {
+        return data.length;
+      })
+    )
+  }
+
 
   getTVShows(): Observable<MovieModel[]> {
     return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(

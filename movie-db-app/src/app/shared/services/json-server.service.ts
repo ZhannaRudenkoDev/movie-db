@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MovieModel } from "../models/movie.model";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { ManualMovieModel } from "../models/manual-movie.model";
 
@@ -19,6 +19,26 @@ export class JsonServerService {
 
   addManual(movie: ManualMovieModel): Observable<ManualMovieModel> {
     return this.http.post<ManualMovieModel>('http://localhost:3000/manual', movie);
+  }
+
+  addToList(movie: ManualMovieModel): Observable<ManualMovieModel> {
+    return this.http.post<ManualMovieModel>('http://localhost:3000/manual', movie);
+  }
+
+  getSuggestCount(): Observable<number> {
+    return this.http.get<MovieModel[]>('http://localhost:3000/movies').pipe(
+      map(data => {
+        return data.length;
+    })
+    );
+  }
+
+  getManual(): Observable<number> {
+    return this.http.get<ManualMovieModel[]>('http://localhost:3000/manual').pipe(
+      map(data => {
+        return data.length;
+      })
+    );
   }
 
 }

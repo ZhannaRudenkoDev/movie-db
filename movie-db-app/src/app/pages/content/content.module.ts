@@ -16,6 +16,8 @@ import { SuggestComponent } from './suggest/suggest.component';
 import { ButtonComponent } from "../../shared/custom-components/button/button.component";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { JsonServerService } from "../../shared/services/json-server.service";
+import { HeaderComponent } from "../../shared/custom-components/header/header.component";
+import { NavbarComponent } from "../../shared/custom-components/navbar/navbar.component";
 
 @NgModule({
     declarations: [
@@ -26,7 +28,9 @@ import { JsonServerService } from "../../shared/services/json-server.service";
         MoviesComponent,
         TvComponent,
         SuggestComponent,
-        ButtonComponent
+        ButtonComponent,
+        HeaderComponent,
+        NavbarComponent
     ],
     imports: [
         ContentRoutingModule,
@@ -47,7 +51,9 @@ import { JsonServerService } from "../../shared/services/json-server.service";
     ],
   exports: [
     SearchInputComponent,
-    ButtonComponent
+    ButtonComponent,
+    HeaderComponent,
+    NavbarComponent
   ],
     bootstrap: []
 })

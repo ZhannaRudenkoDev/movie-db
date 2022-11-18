@@ -1,4 +1,4 @@
-<nav class="custom-navbar">
+<nav class="custom-navbar" *ngIf="navbarType==='user'">
   <div class="custom-navbar__item">
     <a routerLink="movies">Movies</a>
   </div>
@@ -12,3 +12,20 @@
     <a routerLink="log-in" (click)="logout()" style="margin-left: 8px">Logout</a>
   </div>
 </nav>
+
+
+<nav class="custom-navbar" *ngIf="navbarType==='admin'">
+  <div class="custom-navbar__item">
+    <a routerLink="dashboard">Dashboard</a>
+  </div>
+  <div class="custom-navbar__item">
+    <a routerLink="tv">TV Shows</a>
+  </div>
+  <div class="custom-navbar__item">
+    <a routerLink="add-item">Add</a>
+  </div>
+  <div class="custom-navbar__item">
+    <a routerLink="log-in" (click)="logout()" style="margin-left: 8px">Logout</a>
+  </div>
+</nav>
+

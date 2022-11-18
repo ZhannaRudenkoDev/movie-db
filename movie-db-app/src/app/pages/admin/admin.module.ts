@@ -6,14 +6,15 @@ import { MatInputModule }  from '@angular/material/input';
 import { FormsModule } from "@angular/forms";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { JsonServerService } from "../../shared/services/json-server.service";
-import { AuthRoutingModule } from "./auth-routing.module";
-import { LogInComponent } from './log-in/log-in.component';
 import { ContentModule } from "../content/content.module";
-
+import { AdminRoutingModule } from "./admin-routing.module";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 @NgModule({
   declarations: [
-    LogInComponent,
+    DashboardComponent,
+    AddItemComponent,
   ],
   imports: [
     CommonModule,
@@ -21,8 +22,8 @@ import { ContentModule } from "../content/content.module";
     MatInputModule,
     FormsModule,
     MatSnackBarModule,
-    AuthRoutingModule,
-    ContentModule
+    AdminRoutingModule,
+    ContentModule,
   ],
   providers: [
     ApiService,
@@ -35,4 +36,4 @@ import { ContentModule } from "../content/content.module";
   ],
   bootstrap: []
 })
-export class AuthModule { }
+export class AdminModule { }

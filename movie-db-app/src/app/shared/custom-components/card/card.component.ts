@@ -56,7 +56,10 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
-     this.suggestFlag = url[0].path === 'suggest'
+      if(url[0].path) {
+        console.log(url[0].path)
+        this.suggestFlag = url[0].path === 'suggest';
+      }
     })
   }
 

@@ -17,7 +17,9 @@ export class LogInComponent implements OnInit {
     role: ''
   }
 
-  constructor(private userService: UserService,  private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private userService: UserService,
+              private snackBar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,12 +38,13 @@ export class LogInComponent implements OnInit {
 
 
   login() {
-    console.log(this.user);
     this.userService.logIn(this.user.email, this.user.userPassword).subscribe(
       (role) => {
         this.openSnackBar('You logged in!', 'Ok');
         if(role === 'user') {
           this.router.navigate([''])
+        } else if(role === 'admin') {
+          this.router.navigate(['', 'dashboard'])
         }
       },
       () => {
