@@ -10,11 +10,13 @@ import { ContentModule } from "../content/content.module";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddItemComponent } from './add-item/add-item.component';
+import { SuggestionsComponent } from './suggestions/suggestions.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AddItemComponent,
+    SuggestionsComponent,
   ],
   imports: [
     CommonModule,

@@ -73,7 +73,7 @@ export class CardComponent implements OnInit {
     this.route.url.subscribe(url => {
       if(url[0].path) {
         this.suggestFlag = url[0].path === 'suggest';
-        this.addFlag = url[0].path === 'add-item'
+        this.addFlag = url[0].path === 'add-item' || url[0].path === 'suggestions'
       }
     })
   }
