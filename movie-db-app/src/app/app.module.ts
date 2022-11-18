@@ -15,6 +15,7 @@ import { MatInputModule } from "@angular/material/input";
 import { ContentModule } from "./pages/content/content.module";
 import { ApproveDialogComponent } from './shared/custom-components/approve-dialog/approve-dialog.component';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
     ManualDialogComponent,
     ApproveDialogComponent,
     FooterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
