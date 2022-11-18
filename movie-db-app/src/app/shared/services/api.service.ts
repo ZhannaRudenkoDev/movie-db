@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   getMovies(): Observable<MovieModel[]> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?language=en-US`).pipe(
       pluck('results'),
       map(data => {
         return data.map(item => {
@@ -37,7 +37,7 @@ export class ApiService {
   }
 
   getMoviesCount(): Observable<number> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?language=en-US`).pipe(
       pluck('results'),
       map(data => {
         return data.length;
@@ -46,7 +46,7 @@ export class ApiService {
   }
 
   getTvCount(): Observable<number> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?language=en-US`).pipe(
       pluck('results'),
       map(data => {
         return data.length;
@@ -56,7 +56,7 @@ export class ApiService {
 
 
   getTVShows(): Observable<MovieModel[]> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`).pipe(
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?language=en-US`).pipe(
       pluck('results'),
       map(data => {
         return data.map(item => {
@@ -67,15 +67,15 @@ export class ApiService {
   }
 
   getMovieDetails(id: number): Observable<MovieModel> {
-    return this.http.get<MovieModel>(`${this.baseUrl}/3/movie/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`);
+    return this.http.get<MovieModel>(`${this.baseUrl}/3/movie/${id}?language=en-US`);
   }
 
   getTvDetails(id: number): Observable<MovieModel> {
-    return this.http.get<MovieModel>(`${this.baseUrl}/3/tv/${id}?api_key=ff767a08fc1285474f8f591370d12441&language=en-US`);
+    return this.http.get<MovieModel>(`${this.baseUrl}/3/tv/${id}?language=en-US`);
   }
 
   getSearchValues(value: string): Observable<MovieModel[]> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/search/multi?api_key=ff767a08fc1285474f8f591370d12441&language=en-US&adult=false&query=${value}`).pipe(
+    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/search/multi?language=en-US&adult=false&query=${value}`).pipe(
       pluck('results'),
       map(data => {
         return data.filter(item => item.media_type === 'movie' || item.media_type === 'tv')

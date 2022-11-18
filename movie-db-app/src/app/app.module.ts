@@ -16,6 +16,8 @@ import { ContentModule } from "./pages/content/content.module";
 import { ApproveDialogComponent } from './shared/custom-components/approve-dialog/approve-dialog.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HttpClientModule } from "@angular/common/http";
+
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     FormsModule,
     MatInputModule,
     ContentModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

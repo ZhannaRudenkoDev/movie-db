@@ -41,13 +41,13 @@ import { NavbarComponent } from "../../shared/custom-components/navbar/navbar.co
         MatSnackBarModule,
     ],
     providers: [
-        ApiService,
-        JsonServerService
-        /* {
-           provide: HTTP_INTERCEPTORS,
-           useClass: ApiKeyInterceptor,
-           multi: true,
-         },*/
+      ApiService,
+      JsonServerService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: ApiKeyInterceptor,
+        multi: true,
+      }
     ],
   exports: [
     SearchInputComponent,

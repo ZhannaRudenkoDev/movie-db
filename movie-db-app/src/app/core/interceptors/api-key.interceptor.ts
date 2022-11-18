@@ -12,10 +12,17 @@ export class ApiKeyInterceptor implements HttpInterceptor {
 
   constructor() {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const modified = request.clone({
-      setHeaders: { "api_key": "ff767a08fc1285474f8f591370d12441" }
-    });
-    return next.handle(modified);
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (req.url.includes('https://api.themoviedb.org')) {
+      const paramReq = req.clone({
+        params: req.params.set(
+          'api_key',
+          'ff767a08fc1285474f8f591370d12441'
+        )
+      });
+      return next.handle(paramReq);
+    } else {
+      return next.handle(req);
+    }
   }
 }
