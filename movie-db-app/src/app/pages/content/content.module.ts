@@ -19,6 +19,7 @@ import { JsonServerService } from "../../shared/services/json-server.service";
 import { HeaderComponent } from "../../shared/custom-components/header/header.component";
 import { NavbarComponent } from "../../shared/custom-components/navbar/navbar.component";
 import { SnackBarService } from "../../shared/services/snackbar.service";
+import { SearchService } from "../../shared/services/search.service";
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { SnackBarService } from "../../shared/services/snackbar.service";
       ApiService,
       JsonServerService,
       SnackBarService,
+      SearchService,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: ApiKeyInterceptor,

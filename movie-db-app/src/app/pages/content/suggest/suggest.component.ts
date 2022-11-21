@@ -7,6 +7,7 @@ import { ManualMovieModel } from "../../../shared/models/manual-movie.model";
 import { ApproveDialogComponent } from "../../../shared/custom-components/approve-dialog/approve-dialog.component";
 import { JsonServerService } from "../../../shared/services/json-server.service";
 import { SnackBarService } from 'src/app/shared/services/snackbar.service';
+import { SearchService } from "../../../shared/services/search.service";
 
 @Component({
   selector: 'app-suggest',
@@ -23,7 +24,8 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
   constructor(public override apiService: ApiService,
               public dialog: MatDialog,
               private jsonServer: JsonServerService,
-              private snackBService: SnackBarService) {
+              private snackBService: SnackBarService,
+              private searchService: SearchService) {
     super(apiService)
   }
 
@@ -54,7 +56,7 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
 
   searchData() {
     this.formFlag = false
-    this.gridData = this.apiService.getSearchValues(this.searchValue);
+    this.gridData = this.searchService.getSearchValues(this.searchValue);
     this.gridData.subscribe(data => {
       this.displayFlag = !!data.length;
       if(!this.displayFlag) {

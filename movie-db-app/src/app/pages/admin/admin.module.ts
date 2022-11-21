@@ -13,6 +13,7 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { ApiKeyInterceptor } from "../../core/interceptors/api-key.interceptor";
 import { SnackBarService } from "../../shared/services/snackbar.service";
+import {SearchService} from "../../shared/services/search.service";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SnackBarService } from "../../shared/services/snackbar.service";
     ApiService,
     JsonServerService,
     SnackBarService,
+    SearchService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiKeyInterceptor,
