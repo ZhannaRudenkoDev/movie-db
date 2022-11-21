@@ -20,6 +20,7 @@ import { HeaderComponent } from "../../shared/custom-components/header/header.co
 import { NavbarComponent } from "../../shared/custom-components/navbar/navbar.component";
 import { SnackBarService } from "../../shared/services/snackbar.service";
 import { SearchService } from "../../shared/services/search.service";
+import { ErrorHandlingInterceptor } from "../../core/interceptors/error-handling.interceptor";
 
 @NgModule({
     declarations: [
@@ -50,6 +51,11 @@ import { SearchService } from "../../shared/services/search.service";
       {
         provide: HTTP_INTERCEPTORS,
         useClass: ApiKeyInterceptor,
+        multi: true,
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: ErrorHandlingInterceptor,
         multi: true,
       }
     ],

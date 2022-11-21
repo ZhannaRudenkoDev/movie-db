@@ -14,6 +14,7 @@ import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { ApiKeyInterceptor } from "../../core/interceptors/api-key.interceptor";
 import { SnackBarService } from "../../shared/services/snackbar.service";
 import {SearchService} from "../../shared/services/search.service";
+import { ErrorHandlingInterceptor } from "../../core/interceptors/error-handling.interceptor";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,11 @@ import {SearchService} from "../../shared/services/search.service";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiKeyInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlingInterceptor,
       multi: true,
     }
   ],

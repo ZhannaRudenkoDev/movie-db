@@ -36,15 +36,13 @@ export class LogInComponent implements OnInit {
   login() {
     this.userService.logIn(this.user.email, this.user.userPassword).subscribe(
       (role) => {
-        this.snackBService.openSnackBar('You logged in!', 'Ok');
         if(role === 'user') {
           this.router.navigate([''])
+          this.snackBService.openSnackBar('You logged in!', 'Ok');
         } else if(role === 'admin') {
           this.router.navigate(['', 'dashboard'])
+          this.snackBService.openSnackBar('You logged in!', 'Ok');
         }
-      },
-      () => {
-        this.snackBService.openSnackBar('Something went wrong', 'Ok')
       },
     )
   }
