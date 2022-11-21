@@ -18,6 +18,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { JsonServerService } from "../../shared/services/json-server.service";
 import { HeaderComponent } from "../../shared/custom-components/header/header.component";
 import { NavbarComponent } from "../../shared/custom-components/navbar/navbar.component";
+import { SnackBarService } from "../../shared/services/snackbar.service";
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { NavbarComponent } from "../../shared/custom-components/navbar/navbar.co
     providers: [
       ApiService,
       JsonServerService,
+      SnackBarService,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: ApiKeyInterceptor,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from "../../../shared/models/user.model";
 import { UserService } from "../../../shared/services/user.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { SnackBarService } from "../../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-log-in',
@@ -18,7 +18,7 @@ export class LogInComponent implements OnInit {
   }
 
   constructor(private userService: UserService,
-              private snackBar: MatSnackBar,
+              private snackBService: SnackBarService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -32,15 +32,11 @@ export class LogInComponent implements OnInit {
     this.user.userPassword = value
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action);
-  }
-
 
   login() {
     this.userService.logIn(this.user.email, this.user.userPassword).subscribe(
       (role) => {
-        this.openSnackBar('You logged in!', 'Ok');
+        this.snackBService.openSnackBar('You logged in!', 'Ok');
         if(role === 'user') {
           this.router.navigate([''])
         } else if(role === 'admin') {
@@ -48,7 +44,7 @@ export class LogInComponent implements OnInit {
         }
       },
       () => {
-        this.openSnackBar('Something went wrong', 'Ok')
+        this.snackBService.openSnackBar('Something went wrong', 'Ok')
       },
     )
   }

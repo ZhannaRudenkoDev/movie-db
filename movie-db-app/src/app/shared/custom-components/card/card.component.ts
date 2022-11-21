@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MovieModel } from "../../models/movie.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { ApproveDialogComponent } from "../approve-dialog/approve-dialog.component";
 import { JsonServerService } from "../../services/json-server.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { SnackBarService } from '../../services/snackbar.service';
 
 
 @Component({
@@ -42,7 +42,7 @@ export class CardComponent implements OnInit {
         })
       },
       () => {
-        this.openSnackBar('Something went wrong', 'Ok')
+        this.snackBService.openSnackBar('Something went wrong', 'Ok')
       },
     );
   }
@@ -50,24 +50,21 @@ export class CardComponent implements OnInit {
   added() {
     this.jsonServer.addToList(this.movie).subscribe(
       () => {
-        this.openSnackBar('The movie is added to your list!', 'Ok');
+        this.snackBService.openSnackBar('The movie is added to your list!', 'Ok');
         this.addedFlag = true;
       },
       () => {
-        this.openSnackBar('Something went wrong', 'Ok')
+        this.snackBService.openSnackBar('Something went wrong', 'Ok')
       },
     );
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action);
-  }
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               public dialog: MatDialog,
               private jsonServer: JsonServerService,
-              private snackBar: MatSnackBar) { }
+              private snackBService: SnackBarService) { }
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {

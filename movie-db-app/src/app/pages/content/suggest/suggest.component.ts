@@ -5,8 +5,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { ManualDialogComponent } from "../../../shared/custom-components/manual-dialog/manual-dialog.component";
 import { ManualMovieModel } from "../../../shared/models/manual-movie.model";
 import { ApproveDialogComponent } from "../../../shared/custom-components/approve-dialog/approve-dialog.component";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { JsonServerService } from "../../../shared/services/json-server.service";
+import { SnackBarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-suggest',
@@ -22,8 +22,8 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
 
   constructor(public override apiService: ApiService,
               public dialog: MatDialog,
-              private snackBar: MatSnackBar,
-              private jsonServer: JsonServerService,) {
+              private jsonServer: JsonServerService,
+              private snackBService: SnackBarService) {
     super(apiService)
   }
 
@@ -42,17 +42,13 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
             });
           },
           () => {
-            this.openSnackBar('Something went wrong', 'Ok')
+            this.snackBService.openSnackBar('Something went wrong', 'Ok')
           },
         );
       } else {
-        this.openSnackBar('The form is invalid', 'Ok')
+        this.snackBService.openSnackBar('The form is invalid', 'Ok')
       }
     });
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action);
   }
 
 

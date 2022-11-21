@@ -26,8 +26,14 @@ export class ApiService {
   }
 
   getMovies(): Observable<MovieModel[]> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?language=en-US`).pipe(
-      pluck('results'),
+    return forkJoin({
+      popular: this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?language=en-US`).pipe( pluck('results')),
+      top_rated: this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/top_rated?language=en-US`).pipe( pluck('results')),
+      upcoming: this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/upcoming?language=en-US`).pipe( pluck('results')),
+    }).pipe(
+      map(data => {
+        return [ ...data.top_rated,  ...data.popular, ...data.upcoming]
+      }),
       map(data => {
         return data.map(item => {
           return { ...item, isMovie: true}
@@ -37,8 +43,7 @@ export class ApiService {
   }
 
   getMoviesCount(): Observable<number> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/movie/popular?language=en-US`).pipe(
-      pluck('results'),
+    return this.getMovies().pipe(
       map(data => {
         return data.length;
       })
@@ -46,8 +51,7 @@ export class ApiService {
   }
 
   getTvCount(): Observable<number> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?language=en-US`).pipe(
-      pluck('results'),
+    return this.getTVShows().pipe(
       map(data => {
         return data.length;
       })
@@ -56,8 +60,13 @@ export class ApiService {
 
 
   getTVShows(): Observable<MovieModel[]> {
-    return this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?language=en-US`).pipe(
-      pluck('results'),
+    return forkJoin({
+      popular: this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/popular?language=en-US`).pipe( pluck('results')),
+      top_rated: this.http.get<ApiResponseModel>(`${this.baseUrl}/3/tv/top_rated?language=en-US`).pipe( pluck('results')),
+    }).pipe(
+      map(data => {
+        return [ ...data.top_rated,  ...data.popular ]
+      }),
       map(data => {
         return data.map(item => {
           return { ...item, isMovie: false}
