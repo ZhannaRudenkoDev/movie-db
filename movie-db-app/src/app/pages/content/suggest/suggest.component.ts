@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiPageAbstract } from "../../../shared/abstract/api-page.abstract";
 import { ApiService } from "../../../shared/services/api.service";
 import { MatDialog } from "@angular/material/dialog";
@@ -8,13 +8,16 @@ import { ApproveDialogComponent } from "../../../shared/custom-components/approv
 import { JsonServerService } from "../../../shared/services/json-server.service";
 import { SnackBarService } from 'src/app/shared/services/snackbar.service';
 import { SearchService } from "../../../shared/services/search.service";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'app-suggest',
   templateUrl: './suggest.component.html',
   styleUrls: ['./suggest.component.scss']
 })
-export class SuggestComponent extends ApiPageAbstract implements OnInit {
+export class SuggestComponent extends ApiPageAbstract implements OnInit, OnDestroy {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   displayFlag: boolean = false;
   formFlag: boolean = false;
@@ -37,7 +40,9 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.suggestManual = result;
       if(this.suggestManual.title && this.suggestManual.url) {
-        this.jsonServer.addManual(this.suggestManual).subscribe(
+        this.jsonServer.addManual(this.suggestManual)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
           () => {
             this.dialog.open(ApproveDialogComponent, {
               maxWidth: '560px',
@@ -56,8 +61,10 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
 
   searchData() {
     this.formFlag = false
-    this.gridData = this.searchService.getSearchValues(this.searchValue);
-    this.gridData.subscribe(data => {
+    this.gridData = this.searchService.getSearchValues(this.searchValue).pipe(takeUntil(this.destroy$));
+    this.gridData
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
       this.displayFlag = !!data.length;
       if(!this.displayFlag) {
         this.formFlag = true;
@@ -66,6 +73,11 @@ export class SuggestComponent extends ApiPageAbstract implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
 }

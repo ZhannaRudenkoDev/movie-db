@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MovieModel } from "../../models/movie.model";
 import { ApiService } from "../../services/api.service";
-import { switchMap, tap } from "rxjs";
+import { Subject, switchMap, takeUntil, tap } from "rxjs";
 
 @Component({
   selector: 'app-movies-details',
   templateUrl: './movies-details.component.html',
   styleUrls: ['./movies-details.component.scss']
 })
-export class MoviesDetailsComponent implements OnInit {
+export class MoviesDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
 
   movie!: MovieModel;
   genres!: string;
@@ -20,6 +22,7 @@ export class MoviesDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.pipe(
+      takeUntil(this.destroy$),
       tap(params => this.id = params['id']),
       switchMap(() => this.apiService.getMovieDetails(this.id)),
       tap(data => {
@@ -31,5 +34,8 @@ export class MoviesDetailsComponent implements OnInit {
     ).subscribe()
   }
 
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

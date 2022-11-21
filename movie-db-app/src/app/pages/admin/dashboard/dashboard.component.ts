@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JsonServerService } from "../../../shared/services/json-server.service";
 import { ApiService } from "../../../shared/services/api.service";
-import {forkJoin} from "rxjs";
+import { forkJoin, Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   moviesCount = 0;
   tvShowsCount = 0;
@@ -23,12 +25,18 @@ export class DashboardComponent implements OnInit {
       tvShows: this.apiService.getTvCount(),
       suggest: this.jsonServerService.getSuggestCount(),
       manual: this.jsonServerService.getManual()
-    }).subscribe(data => {
+    }).pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
       this.moviesCount = data.movies;
       this.tvShowsCount = data.tvShows;
       this.suggestionsCount = data.suggest;
       this.manualCount = data.manual
     })
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
 }

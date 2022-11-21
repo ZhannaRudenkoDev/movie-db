@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MovieModel } from "../../models/movie.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { ApproveDialogComponent } from "../approve-dialog/approve-dialog.component";
 import { JsonServerService } from "../../services/json-server.service";
 import { SnackBarService } from '../../services/snackbar.service';
+import { Subject, takeUntil } from "rxjs";
 
 
 @Component({
@@ -12,7 +13,9 @@ import { SnackBarService } from '../../services/snackbar.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnDestroy {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   @Input() movie!: MovieModel;
 
@@ -32,7 +35,9 @@ export class CardComponent implements OnInit {
   }
 
   suggested() {
-    this.jsonServer.addMovie(this.movie).subscribe(
+    this.jsonServer.addMovie(this.movie)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
       () => {
         const dialogRef = this.dialog.open(ApproveDialogComponent, {
           maxWidth: '560px',
@@ -48,7 +53,9 @@ export class CardComponent implements OnInit {
   }
 
   added() {
-    this.jsonServer.addToList(this.movie).subscribe(
+    this.jsonServer.addToList(this.movie)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
       () => {
         this.snackBService.openSnackBar('The movie is added to your list!', 'Ok');
         this.addedFlag = true;
@@ -67,12 +74,20 @@ export class CardComponent implements OnInit {
               private snackBService: SnackBarService) { }
 
   ngOnInit(): void {
-    this.route.url.subscribe(url => {
+    this.route.url
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(url => {
       if(url[0].path) {
         this.suggestFlag = url[0].path === 'suggest';
         this.addFlag = url[0].path === 'add-item' || url[0].path === 'suggestions'
       }
     })
+  }
+
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
 }

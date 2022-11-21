@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from "../../../shared/services/api.service";
-import { switchMap, tap } from "rxjs";
+import { Subject, switchMap, takeUntil, tap } from "rxjs";
 import { ApiPageAbstract } from "../../../shared/abstract/api-page.abstract";
 
 @Component({
@@ -8,7 +8,9 @@ import { ApiPageAbstract } from "../../../shared/abstract/api-page.abstract";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent extends ApiPageAbstract implements OnInit {
+export class HomeComponent extends ApiPageAbstract implements OnInit, OnDestroy {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   public ontoggleBtnAll = 'btn-change';
   public ontoggleBtnMovies = 'btn-static';
@@ -45,6 +47,7 @@ export class HomeComponent extends ApiPageAbstract implements OnInit {
 
   ngOnInit(): void {
     this.gridData = this.hasChanges$.pipe(
+      takeUntil(this.destroy$),
       switchMap(() => {
         if(this.ontoggleBtnShows === 'btn-change') {
           return this.apiService.getTVShows();
@@ -58,6 +61,11 @@ export class HomeComponent extends ApiPageAbstract implements OnInit {
         this.gridDataCount = data.length;
       })
     );
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
 }
